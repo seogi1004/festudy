@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+</head>
+<body>
+
+<section>
+  <h3>v-if</h3>
+  <div id="example1">
+    <h1 v-if="ok">Yes</h1>
+
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>No</h1>
+
+    <template v-if="ok">
+      <h1>Title</h1>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </template>
+  </div>
+  <hr>
+</section>
+
+<section>
+  <h3>v-else-if</h3>
+  <div id="example2">
+    <div v-if="type === 'A'">
+      A
+    </div>
+    <div v-else-if="type === 'B'">
+      B
+    </div>
+    <div v-else-if="type === 'C'">
+      C
+    </div>
+    <div v-else>
+      Not A/B/C
+    </div>
+  </div>
+  <hr>
+</section>
+
+<section>
+  <h3>v-else-if (2)</h3>
+  <div id="example3">
+    <template v-if="loginType === 'username'">
+      <label>사용자 이름</label>
+      <input placeholder="사용자 이름을 입력하세요" key="username-input">
+    </template>
+    <template v-else>
+      <label>이메일</label>
+      <input placeholder="이메일 주소를 입력하세요" key="email-input">
+    </template>
+  </div>
+  <button onclick="run()">run</button>
+  <hr>
+</section>
+
+<section>
+  <h3>v-show</h3>
+  <div id="example4">
+    <label v-show="active">hihihihi</label>
+  </div>
+</section>
+
+
+<script src="/dist/build.js"></script>
+</body>
+</html>

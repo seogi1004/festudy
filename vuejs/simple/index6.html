@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+</head>
+<body>
+
+<div id="app1">
+  <button v-on:click="counter += 1">Add 1</button>
+  <p>위 버튼을 클릭한 횟수는 {{ counter }}</p>
+</div>
+<hr/>
+
+<div id="app2">
+  <button v-on:click="greet">Greet</button>
+</div>
+<hr/>
+
+<div id="app3">
+  <button v-on:click="say('hi')">Say hi</button>
+  <button v-on:click="say('what')">Say what</button>
+  <button @click.once="warn('Form cannot be submitted yet.', $event)">
+    Submit
+  </button>
+</div>
+<hr/>
+
+<div id="app4">
+  <input @keyup.13="submit" />
+  <input @keyup.enter="submit" />
+</div>
+<hr/>
+
+<div id="app5">
+  <!-- Alt + C -->
+  <input @keyup.alt.67="clear">
+
+  <!-- Ctrl + Click -->
+  <button @click.ctrl="doSomething1">Do something</button>
+
+  <!-- Alt 또는 Shift와 함께 눌린 경우에도 실행됩니다. -->
+  <button @click.ctrl="doSomething2">A</button>
+
+  <!-- Ctrl 키만 눌려있을 때만 실행됩니다. -->
+  <button @click.ctrl.exact="doSomething3">A</button>
+
+  <!-- 아래 코드는 시스템 키가 눌리지 않은 상태인 경우에만 작동합니다. -->
+  <button @click.exact="clear">A</button>
+
+</div>
+<hr/>
+
+<script src="/dist/build.js"></script>
+</body>
+</html>

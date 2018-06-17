@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+</head>
+<body>
+
+<div id="app1">
+  {{ message }}
+
+  <h1 v-if="ok">Yes</h1>
+  <h1 v-else>No</h1>
+  <hr/>
+
+  <div v-if="Math.random() > 0.5">
+    이제 나를 볼 수 있어요
+  </div>
+  <div v-else>
+    이제는 안보입니다
+  </div>
+  <hr/>
+</div>
+
+<div id="app2">
+  <div v-if="type === 'A'">
+    A
+  </div>
+  <div v-else-if="type === 'B'">
+    B
+  </div>
+  <div v-else-if="type === 'C'">
+    C
+  </div>
+  <div v-else>
+    Not A/B/C
+  </div>
+  <hr/>
+</div>
+
+<div id="app3">
+  <template v-if="loginType === 'username'">
+    <label>사용자 이름</label>
+    <input placeholder="사용자 이름을 입력하세요" key="username-input">
+  </template>
+  <template v-else>
+    <label>이메일</label>
+    <input placeholder="이메일 주소를 입력하세요" key="email-input">
+  </template>
+  <button onclick="vm3.loginType='email'">로그인 유형 변경</button>
+  <hr/>
+</div>
+
+<div id="app4">
+  <h1 v-show="ok">안녕하세요!</h1>
+  <hr/>
+</div>
+
+<script src="/dist/build.js"></script>
+</body>
+</html>

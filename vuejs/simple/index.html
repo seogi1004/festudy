@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+
+  <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>{{ foo }}</p>
+  <!-- obj.foo는 더이상 변하지 않습니다! -->
+  <button @click="onTest" :title="foo">Change it</button>
+</div>
+<hr>
+
+<div id="example">
+  <p>원본 메시지: "{{ message }}"</p>
+  <p>뒤집히도록 계산된 메시지: "{{ reversedMessage }}"</p>
+</div>
+<hr>
+
+<div id="demo" v-bind:style="[styleObject, styleObject2]">{{ fullName }}</div>
+<hr>
+
+<div id="watch-example">
+  <p>
+    yes/no 질문을 물어보세요:
+    <input v-model="question">
+  </p>
+  <p>{{ answer }}</p>
+</div>
+<hr>
+
+<script src="/dist/build.js"></script>
+</body>
+</html>

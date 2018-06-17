@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+</head>
+<body>
+
+<section>
+  <h3>계산된 속성</h3>
+  <div id="example1">
+    <p>원본 메시지 : "{{ message }}"</p>
+    <p>뒤집힌 메시지 : "{{ reversedMessage }}"</p>
+  </div>
+  <button onclick="func1()">vm1.message = 'Hello'</button>
+  <hr>
+</section>
+
+<section>
+  <h3>계산된 속성 vs 메소드</h3>
+  <div id="example2">
+    <p>원본 메시지 : "{{ message }}"</p>
+    <p>뒤집힌 메시지 : "{{ reversedMessage() }}"</p>
+  </div>
+  <button onclick="func2()">vm1.message = 'Hello'</button>
+  <hr>
+</section>
+
+<section>
+  <h3>계산된 속성 vs 감시된 속성</h3>
+  <div>
+    <div id="example3">{{ fullName }}</div>
+    <div id="example4">{{ fullName }}</div>
+  </div>
+  <hr>
+</section>
+
+<section>
+  <h3>계산된 Setter</h3>
+  <div>
+    <div id="example5">{{ fullName }} ({{ firstName }} {{ lastName }})</div>
+  </div>
+  <button onclick="func5()">vm5.fullName = "hong jae"</button>
+  <hr>
+</section>
+
+<section>
+  <h3>감시자</h3>
+  <div>
+    <div id="watch-example">
+      <p>
+        yes/no 질문을 물어보세요:
+        <input v-model="question">
+      </p>
+      <p>{{ answer }}</p>
+    </div>
+  </div>
+  <hr>
+</section>
+
+<section>
+  <h3>depth가 있는 감시자</h3>
+  <div>
+    <div id="watch-example-2">
+      <p> {{ message }}</p>
+    </div>
+  </div>
+  <button onclick="func10()">vm10.a.b.c = "d"</button>
+  <hr>
+</section>
+
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<script src="/dist/build.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+</head>
+<body>
+
+<ul id="app1">
+  <li v-for="item in items" :key="item.id">
+    {{ item.message }}
+  </li>
+</ul>
+<hr/>
+
+<ul id="app2">
+  <li v-for="(item, index) in items">
+    {{ parentMessage}} - {{ index }} - {{ item.message }}
+  </li>
+</ul>
+<hr/>
+
+<ul id="app3">
+  <li v-for="(value, key, index) in object">
+    {{ index }}. {{ key }} : {{ value }}
+  </li>
+</ul>
+<hr/>
+
+<ul id="app4">
+  <li v-for="n in evenNumbers">
+    {{ n }}
+  </li>
+</ul>
+<hr/>
+
+<ul id="app5">
+  <li v-for="n in even(numbers)">
+    {{ n }}
+  </li>
+</ul>
+<hr/>
+
+<div id="app6">
+  <span v-for="n in 10">{{ n }}</span>
+</div>
+<hr/>
+
+<ul id="app7">
+  <template v-if="items.length">
+    <template v-for="item in items" v-if="!item.isComplete">
+      <li>{{ item.msg }}</li>
+      <li class="divider"></li>
+    </template>
+  </template>
+  <template v-else><li>no data</li></template>
+</ul>
+<hr/>
+
+
+<script src="/dist/build.js"></script>
+</body>
+</html>
