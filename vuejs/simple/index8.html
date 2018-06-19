@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+</head>
+<body>
+
+<div id="app1">
+  <my-component></my-component>
+</div>
+<hr/>
+
+<div id="app2">
+    <my-component></my-component>
+</div>
+<hr/>
+
+<div id="app3">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+</div>
+<hr/>
+
+<div id="app4">
+    <child my-message="안녕하세요!!"></child> ({{ message }})
+</div>
+<hr/>
+
+<div id="app5">
+    <input v-model="parentMsg"> == <child v-bind:my-message="parentMsg"></child>
+</div>
+<hr/>
+
+<div id="app6">
+    <todo-item v-bind="todo"></todo-item>
+</div>
+<hr/>
+
+<script src="/dist/build.js"></script>
+</body>
+</html>

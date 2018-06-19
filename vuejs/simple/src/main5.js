@@ -7,6 +7,11 @@ window.vm1 = new Vue({
       { message: 'Foo' },
       { message: 'Bar' }
     ]
+  },
+  methods: {
+    gogo: function(d, e) {
+      alert(d, e);
+    }
   }
 })
 

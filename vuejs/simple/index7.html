@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+</head>
+<body>
+
+<div id="app1">
+  <input v-model="message" placeholder="여기를 수정해보세요">
+  <p>메시지: {{ message }}</p>
+</div>
+<hr/>
+
+<div id="app2">
+    <span>여러 줄을 가지는 메시지:</span>
+    <p style="white-space: pre-line">{{ message }}</p>
+    <br>
+    <textarea v-model="message" placeholder="여러줄을 입력해보세요"></textarea>
+</div>
+<hr/>
+
+<div id="app3">
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+</div>
+<hr/>
+
+<div id="app4">
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>체크한 이름: {{ checkedNames }}</span>
+</div>
+<hr/>
+
+<div id="app5">
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>선택: {{ picked }}</span>
+</div>
+<hr/>
+
+<div id="app6">
+    <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>선택함: {{ selected }}</span>
+</div>
+<hr/>
+
+<div id="app7">
+    <select v-model="selected" multiple style="width: 100px">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>선택함: {{ selected }}</span>
+</div>
+<hr/>
+
+<div id="app8">
+    <select v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+<hr/>
+<br/>
+<br/>
+<br/>
+
+<div id="app9">
+    <input v-model.lazy="msg" />
+    <span>Selected: {{ msg }}</span>
+</div>
+<hr/>
+
+<div id="app10">
+    <input v-model.number="age" type="number">
+    <span>Selected: {{ age }}</span>
+</div>
+<hr/>
+
+<div id="app11">
+    <input v-model.trim="msg" />
+    <span>Selected: {{ msg }}</span>
+</div>
+<hr/>
+
+<script src="/dist/build.js"></script>
+</body>
+</html>
