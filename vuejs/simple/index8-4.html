@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+    <style>
+        #app {
+            width: 500px;
+            height: 300px;
+            background: #191919;
+        }
+        #app > .app-nav {
+            width: 100%;
+            height: 50px;
+            background: #dcdcdc;
+            border: 1px solid #191919;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 50px;
+        }
+        #app > .app-view {
+            position: relative;
+            width: 100%;
+            height: 200px;
+        }
+        #app > .app-view > span {
+            position: absolute;
+            left: 45%;
+            top: 5px;
+            z-index: 1000;
+        }
+        #app > .app-view > .app-sidebar {
+            position: absolute;
+            width: 150px;
+            height: 245px;
+            background: #dcdcdc;
+            border: 1px solid #191919;
+            text-align: center;
+            line-height: 245px;
+        }
+        #app > .app-view > .app-content {
+            position: absolute;
+            left: 150px;
+            width: 350px;
+            height: 245px;
+            background: #dcdcdc;
+            border: 1px solid #191919;
+            text-align: center;
+            line-height: 245px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <app-nav subject="navigation"></app-nav>
+
+    <!-- app-view 안의 모든 태그에 데이터는 app-view 컴포넌트 영역 안에 있다. -->
+    <app-view subject="view">
+
+        <!-- 그렇기 때문에 subject os-active 속성은 app-sidebar가 아닌 app-view 스코프이다. -->
+        <!-- 하지만 js 코드를 보면 app-sidebar 쪽에서 정의하는데, 그건 props로 명시했기 때문이다. -->
+        <app-sidebar subject="view-sidebar" is-active="true"></app-sidebar>
+        <app-content subject="view-content"></app-content>
+    </app-view>
+</div>
+
+<script src="/dist/build.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>vuejs-simple</title>
+</head>
+<body>
+
+<!-- 이게 부모 -->
+<div id="app1">
+    <!-- 이게 부모?? -->
+    <bs-date-input
+            data-3d-date-picker="true"
+            class="date-picker-theme-dark"
+
+            message="안녕하세요"
+            :message="parentData" /> <!-- vm객체의 data.parentData와 바인딩 -->
+
+            @increment="incrementTotal"
+    ></bs-date-input>
+    <strong>{{ total }}</strong>
+</div>
+<hr/>
+
+<script src="/dist/build.js"></script>
+</body>
+</html>
