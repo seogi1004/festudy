@@ -17,16 +17,40 @@ Vue.component('app-sidebar', {
     }
 })
 
-Vue.component('app-view', {
-    template: '<div class="app-view"><span>{{ subject }}</span><slot></slot></div>',
+Vue.component('app-footer', {
+    template: '<div class="app-footer">{{ subject }}</div>',
     props: [ 'subject' ]
 })
 
-Vue.component('app-nav', {
-    template: '<div class="app-nav">{{ subject }}</div>',
+Vue.component('app-view', {
+    template: '<div class="app-view"><span>{{ subject }}</span><slot></slot><slot name="footer" text="범위를 가지는 슬롯"></slot></div>',
     props: [ 'subject' ]
 })
+
+// Vue.component('app-nav', {
+//     template: '<div class="app-nav">{{ subject }}</div>',
+//     props: [ 'subject' ]
+// })
 
 window.vm = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        copyright: '나의 소유자는 vm 객체이다.',
+        currentNav: 'app-nav'
+    },
+    methods: {
+        incrementTotal: function () {
+            alert('#app handler')
+        }
+    },
+    components: {
+        'app-nav': {
+            template: '<div class="app-nav">{{ subject }}</div>',
+            props: [ 'subject' ]
+        },
+        'app-nav-another': {
+            template: '<div class="app-nav"><h2>{{ subject }}</h2></div>',
+            props: [ 'subject' ]
+        }
+    }
 })

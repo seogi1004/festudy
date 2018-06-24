@@ -29,7 +29,7 @@
             top: 5px;
             z-index: 1000;
         }
-        #app > .app-view > .app-sidebar {
+        #app > .app-view > main > .app-sidebar {
             position: absolute;
             width: 150px;
             height: 245px;
@@ -38,7 +38,7 @@
             text-align: center;
             line-height: 245px;
         }
-        #app > .app-view > .app-content {
+        #app > .app-view > main > .app-content {
             position: absolute;
             left: 150px;
             width: 350px;
@@ -48,20 +48,48 @@
             text-align: center;
             line-height: 245px;
         }
+        #app > .app-view > footer > .app-footer {
+            position: absolute;
+            width: 500px;
+            height: 20px;
+            top: 225px;
+            background: #dcdcdc;
+            border: 1px solid #191919;
+        }
+        #app > .app-view > footer > .footer-text {
+            position: absolute;
+            left: 200px;
+            top: 225px;
+            font-size: 11px;
+        }
     </style>
 </head>
 <body>
 
 <div id="app">
-    <app-nav subject="navigation"></app-nav>
+    <!--<app-nav subject="navigation"></app-nav>-->
+    <component v-bind:is="currentNav" subject="navigation">
+        <!-- vm.currentNav가 변경되면 컴포넌트가 변경됩니다! -->
+    </component>
 
     <!-- app-view 안의 모든 태그에 데이터는 app-view 컴포넌트 영역 안에 있다. -->
-    <app-view subject="view">
+    <app-view subject="(view)">
 
-        <!-- 그렇기 때문에 subject os-active 속성은 app-sidebar가 아닌 app-view 스코프이다. -->
-        <!-- 하지만 js 코드를 보면 app-sidebar 쪽에서 정의하는데, 그건 props로 명시했기 때문이다. -->
-        <app-sidebar subject="view-sidebar" is-active="true"></app-sidebar>
-        <app-content subject="view-content"></app-content>
+        <main>
+            <!-- 그렇기 때문에 subject os-active 속성은 app-sidebar가 아닌 app-view 스코프이다. -->
+            <!-- 하지만 js 코드를 보면 app-sidebar 쪽에서 정의하는데, 그건 props로 명시했기 때문이다. -->
+            <app-sidebar subject="view-sidebar" is-active="true"></app-sidebar>
+
+            <!-- @increment는 vm 객체에 정의된 커스텀 핸들러이다 -->
+            <!-- $emit는 최상위 즉, 컴포넌트가 아닌 vue 객체에 정의된 핸들러만 호출할 수 있다 (매우 중요) -->
+            <!-- vm.$children[1].$children[1].$emit("increment") -->
+            <app-content subject="view-content" @increment="incrementTotal"></app-content>
+        </main>
+
+        <footer slot="footer" slot-scope="props">
+            <app-footer :subject="copyright"></app-footer>
+            <span class="footer-text">({{ props.text }})<span>
+        </footer>
     </app-view>
 </div>
 
