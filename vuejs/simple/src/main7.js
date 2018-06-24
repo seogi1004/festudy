@@ -50,7 +50,7 @@ window.vm6 = new Vue({
 window.vm7 = new Vue({
     el: '#app7',
     data: {
-        selected: [ "C" ]
+        selected: [ "cc" ]
     }
 })
 

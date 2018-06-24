@@ -2,9 +2,16 @@ import Vue from 'vue'
 
 /* 슬롯 테스트 */
 
+window.Vue = Vue
+
 Vue.component('app-content', {
-    template: '<div class="app-content">{{ subject }}</div>',
-    props: [ 'subject' ]
+    template: '<div class="app-content" @click="clickContent">{{ subject }} [{{ content }}]</div>',
+    props: [ 'subject', 'content' ],
+    methods: {
+        clickContent: function() {
+            this.$emit("increment")
+        }
+    }
 })
 
 Vue.component('app-sidebar', {
@@ -27,30 +34,28 @@ Vue.component('app-view', {
     props: [ 'subject' ]
 })
 
-// Vue.component('app-nav', {
-//     template: '<div class="app-nav">{{ subject }}</div>',
-//     props: [ 'subject' ]
-// })
+Vue.component('app-nav', {
+    template: '<div class="app-nav">{{ subject }}</div>',
+    props: [ 'subject' ]
+})
+
+Vue.component('app-nav-another', {
+    template: '<div class="app-nav"><h2>{{ subject }}</h2></div>',
+    props: [ 'subject' ]
+})
 
 window.vm = new Vue({
     el: '#app',
     data: {
-        copyright: '나의 소유자는 vm 객체이다.',
-        currentNav: 'app-nav'
+        copyright: '나의 소유자는 vm 객체',
+        currentNav: 'app-nav',
+        contentTotal: '나의 소유자는 vm 객체 123123',
+
+        subjectRoot: "asdfasdfaf"
     },
     methods: {
         incrementTotal: function () {
-            alert('#app handler')
-        }
-    },
-    components: {
-        'app-nav': {
-            template: '<div class="app-nav">{{ subject }}</div>',
-            props: [ 'subject' ]
-        },
-        'app-nav-another': {
-            template: '<div class="app-nav"><h2>{{ subject }}</h2></div>',
-            props: [ 'subject' ]
+            alert('나의 소유자는 vm 객체의 메소드!!')
         }
     }
 })
