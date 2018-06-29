@@ -25,13 +25,36 @@ Vue.component('app-sidebar', {
 })
 
 Vue.component('app-footer', {
-    template: '<div class="app-footer">{{ subject }}</div>',
-    props: [ 'subject' ]
+    template: '<div class="app-footer" @click="clickLink">{{ subject }}</div>',
+    props: [ 'subject' ],
+    methods: {
+        clickLink: function() {
+            this.$emit("link")
+        }
+    }
 })
 
 Vue.component('app-view', {
-    template: '<div class="app-view"><span>{{ subject }}</span><slot></slot><slot name="footer" text="범위를 가지는 슬롯"></slot></div>',
-    props: [ 'subject' ]
+    template:
+        '<div class="app-view">' +
+            '<span>{{ subject }}</span>' +
+            '<slot></slot>' +
+            '<slot name="footer" text="범위를 가지는 슬롯"></slot>' +
+            '<footer>' +
+                '<app-footer :subject="copyright" @link="linkTo"></app-footer>' +
+            '</footer>' +
+        '</div>',
+    props: [ 'subject' ],
+    data: function() {
+        return {
+            copyright: '나의 소유자는 vm 객체'
+        }
+    },
+    methods: {
+        linkTo: function() {
+            alert("나의 소유자는 view 컴포넌트 객체!!!")
+        }
+    }
 })
 
 Vue.component('app-nav', {
@@ -47,11 +70,8 @@ Vue.component('app-nav-another', {
 window.vm = new Vue({
     el: '#app',
     data: {
-        copyright: '나의 소유자는 vm 객체',
         currentNav: 'app-nav',
-        contentTotal: '나의 소유자는 vm 객체 123123',
-
-        subjectRoot: "asdfasdfaf"
+        contentTotal: '나의 소유자는 vm 객체 123123'
     },
     methods: {
         incrementTotal: function () {

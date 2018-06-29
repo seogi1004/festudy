@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "currency-validator": "^1.0.1",
+    "juijs-chart": "^2.1.0-rc.12",
     "vue": "^2.5.11"
   },
   "browserslist": [
