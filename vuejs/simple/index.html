@@ -3,12 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #app {
+            position: relative;
+        }
+        .title {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            z-index: 1;
+        }
+        .col {
+            display: inline-block;
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-    {{ name }}
-    <graph-line :width="width" :height="height" :labels="labels" :values="values"></graph-line>
-    <graph-line :width="width" :height="height" :labels="labels2" :values="values2"></graph-line>
+    <div class="title">{{ name }}</div>
+    <div class="row">
+        <div class="col">
+            <graph-line :width="width" :height="height" :labels="labels" :values="values" :shape="'step'"></graph-line>
+        </div>
+        <div class="col">
+            <graph-column :width="width" :height="height" :labels="[ '1Q', '2Q', '3Q','4Q' ]" :values="[ 15, 25, 30, -20 ]"></graph-column>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <graph-line :width="width" :height="height" :labels="labels" :values="values2" :shape="'step'"></graph-line>
+        </div>
+        <div class="col">
+            <graph-column :width="width" :height="height" :labels="[ '1Q', '2Q', '3Q','4Q' ]" :values="[ 15, 25, 30, -20 ]"></graph-column>
+        </div>
+    </div>
 </div>
 <script src="/dist/build.js"></script>
 </body>

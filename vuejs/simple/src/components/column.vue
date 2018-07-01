@@ -5,7 +5,7 @@
     const jui = require('juijs-chart')
 
     export default {
-        name: 'graph-line',
+        name: 'graph-column',
         props: {
             labels: {
                 type: Array,
@@ -22,11 +22,6 @@
             width: {
                 type: Number,
                 required: true
-            },
-            shape: {
-                type: String,
-                required: false,
-                default: "curve"
             }
         },
         methods: {
@@ -39,7 +34,7 @@
 
                 return data;
             },
-            initChartObject: function(width, height, labels, values, symbol) {
+            initChartObject: function(width, height, labels, values) {
                 return jui.create("chart.builder", this.$el, {
                     width : width,
                     height : height,
@@ -58,26 +53,21 @@
                         data : this.convertToData(values)
                     }],
                     brush : [{
-                        type : "line",
-                        target : [ "value" ],
-                        symbol : symbol
+                        type : "column",
+                        target : [ "value" ]
                     }],
                     render : false
                 })
             }
         },
         watch: {
-            width: function(newVal, oldVal) {
-                this.$chart.setSize(newVal, this.height);
-                this.$chart.render()
-            },
             values: function (newVal, oldVal) { // watch it
                 this.$chart.axis(0).update(this.convertToData(newVal));
                 this.$chart.render();
             }
         },
         mounted: function(e) {
-            this.$chart = this.initChartObject(this.width, this.height, this.labels, this.values, this.shape);
+            this.$chart = this.initChartObject(this.width, this.height, this.labels, this.values);
             this.$chart.render();
         }
     }
