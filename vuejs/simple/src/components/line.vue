@@ -1,69 +1,19 @@
 <template>
-    <div></div>
+    <div><slot></slot></div>
 </template>
 <script>
-    const jui = require('juijs-chart')
+    import props from './mixins/props.js'
+    import methods from './mixins/methods.js'
+    import beforeMount from './mixins/beforeMount.js'
 
     export default {
         name: 'graph-line',
+        mixins: [ props, methods, beforeMount ],
         props: {
-            labels: {
-                type: Array,
-                required: true
-            },
-            values: {
-                type: Array,
-                required: true
-            },
-            height: {
-                type: Number,
-                required: true
-            },
-            width: {
-                type: Number,
-                required: true
-            },
             shape: {
                 type: String,
                 required: false,
-                default: "curve"
-            }
-        },
-        methods: {
-            convertToData: function(values) {
-                var data = [];
-
-                for(var i = 0; i < values.length; i++) {
-                    data.push({ value: values[i] });
-                }
-
-                return data;
-            },
-            initChartObject: function(width, height, labels, values, symbol) {
-                return jui.create("chart.builder", this.$el, {
-                    width : width,
-                    height : height,
-                    axis : [{
-                        x : {
-                            type : "block",
-                            domain : labels,
-                            line : true
-                        },
-                        y : {
-                            type : "range",
-                            domain : [ -40, 40 ],
-                            step : 10,
-                            line : true
-                        },
-                        data : this.convertToData(values)
-                    }],
-                    brush : [{
-                        type : "line",
-                        target : [ "value" ],
-                        symbol : symbol
-                    }],
-                    render : false
-                })
+                default: 'curve'
             }
         },
         watch: {
@@ -71,14 +21,25 @@
                 this.$chart.setSize(newVal, this.height);
                 this.$chart.render()
             },
+            height: function(newVal, oldVal) {
+                this.$chart.setSize(this.width, newVal);
+                this.$chart.render()
+            },
             values: function (newVal, oldVal) { // watch it
                 this.$chart.axis(0).update(this.convertToData(newVal));
                 this.$chart.render();
             }
         },
-        mounted: function(e) {
-            this.$chart = this.initChartObject(this.width, this.height, this.labels, this.values, this.shape);
-            this.$chart.render();
+        mounted: function() {
+            this.$brushes.push({
+                type: 'line',
+                symbol: this.shape
+            });
+
+            this.$chart = this.createBaseChart();
+            this.initGraphBrushes();
+            this.initGraphWidgets();
+            this.$chart.render(true);
         }
     }
 </script>
