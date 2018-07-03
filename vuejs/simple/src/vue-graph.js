@@ -1,14 +1,11 @@
 import Vue from 'vue'
 import GraphLine from './components/line.vue'
-import GraphColumn from './components/column.vue'
 import WidgetNote from './components/widgets/note.vue'
 
 var VueGraph = {};
 
 VueGraph.install = function(Vue, options) {
     Vue.component(GraphLine.name, GraphLine)
-    Vue.component(GraphColumn.name, GraphColumn)
-
     Vue.component(WidgetNote.name, WidgetNote)
 }
 

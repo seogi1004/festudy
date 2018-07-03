@@ -3,50 +3,50 @@ import jui from 'juijs-chart'
 export default {
     methods: {
         convertToData: function(values) {
-            let _ = jui.include('util.base')
-            let data = []
+            let _ = jui.include('util.base');
+            let data = [];
 
             for(let i = 0; i < values.length; i++) {
-                let val = values[i]
+                let val = values[i];
 
                 if(_.typeCheck('array', val)) {
-                    let row = {}
+                    let row = {};
 
                     for(let j = 0; j < val.length; j++) {
-                        row['col'+j] = val[j]
+                        row['col'+j] = val[j];
                     }
 
-                    data.push(row)
+                    data.push(row);
                 } else if(_.typeCheck('number', val)) {
-                    data.push({ 'col0' : val })
+                    data.push({ 'col0' : val });
                 }
             }
 
             return data;
         },
         getAxisMinAndMax: function() {
-            let min = this.axisMin
-            let max = this.axisMax
+            let min = this.axisMin;
+            let max = this.axisMax;
 
             if(min != max) {
                 return [ min, max ]
             }
 
             return function(data) {
-                return Math.max.apply(null, Object.values(data))
+                return Math.max.apply(null, Object.values(data));
             }
         },
         initGraphBrushes: function() {
-            for(let brush of this.$brushes) {
-                this.$chart.addBrush(brush);
+            for(let brush of this.brushes) {
+                this.chart.addBrush(brush);
             }
         },
         initGraphWidgets: function() {
-            for(let widget of this.$widgets) {
-                this.$chart.addWidget(widget);
+            for(let widget of this.widgets) {
+                this.chart.addWidget(widget);
             }
         },
-        createBaseChart: function() {
+        createBlockAndRangeAxes: function() {
             let xAxis = {
                 type : 'block',
                 domain : this.labels,
@@ -62,7 +62,7 @@ export default {
                 orient : this.axisXPosition
             }
 
-            return jui.create('chart.builder', this.$el, {
+            return {
                 width : this.width,
                 height : this.height,
                 padding : {
@@ -71,13 +71,13 @@ export default {
                     bottom : this.paddingBottom,
                     left : this.paddingLeft
                 },
-                axis : [{
+                axis : {
                     x : (this.axisReverse) ? yAxis : xAxis,
                     y : (this.axisReverse) ? xAxis : yAxis,
                     data : this.convertToData(this.values)
-                }],
+                },
                 render : false
-            })
+            }
         }
     }
 }

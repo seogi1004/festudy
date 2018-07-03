@@ -13,21 +13,21 @@
         },
         watch: {
             text: function(newVal, oldVal) {
-                this.$parent.$chart.updateWidget(this.$index, {
+                this.$parent.chart.updateWidget(this.index, {
                     text: newVal
                 });
 
-                this.$parent.$chart.render(true)
+                this.$parent.chart.render(true)
             }
         },
-        mounted: function(e) {
+        beforeMount: function(e) {
             if(this.$root == this.$parent) return;
-            this.$index = this.$parent.$widgets.length;
 
-            this.$parent.$widgets.push({
+            this.index = this.$parent.widgets.length;
+            this.$parent.widgets.push({
                 type: 'title',
                 text: this.text
-            })
+            });
         }
     }
 </script>
