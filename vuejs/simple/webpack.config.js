@@ -2,7 +2,9 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/vue-single.js',
+  entry: './src/vue-math.js',
+  // entry: './src/vue-single.js',
+  // entry: './src/ts/test1.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -66,14 +68,17 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
-      }
+      },
+        { test: /\.ts$/, use: 'awesome-typescript-loader' },
+        { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+        { enforce: 'pre', test: /\.ts$/, loader: 'tslint-loader' }
     ]
   },
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['*', '.js', '.vue', '.json']
+    extensions: ['*', '.js', '.vue', '.json', '.ts']
   },
   devServer: {
     historyApiFallback: true,
@@ -95,12 +100,20 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
+      new webpack.optimize.UglifyJsPlugin({
+          // 사실 아래와 같이만 써도 트리 쉐이킹이 된다.
+          // compress: true
+
+          compress: {
+              // warnings: false, // 콘솔 창에 출력되는 게 보기 귀찮다면 요 놈을 주석 제거하면 된다.
+              unused: true // 요 놈이 핵심
+          },
+          mangle: false,    // DEMO ONLY: Don't change variable names.(난독화)
+          beautify: true,   // DEMO ONLY: Preserve whitespace (가독성 좋게 함)
+          output: {
+              comments: true  // DEMO ONLY: Helpful comments (주석 삭제 안 함)
+          }
+      }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
