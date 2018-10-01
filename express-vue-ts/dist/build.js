@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \"\\n.greeting_394W3zoq {\\n    font-size: 30px;\\n}\\n\", \"\"]);\n\n// exports\nexports.locals = {\n\t\"greeting\": \"greeting_394W3zoq\"\n};\n\n//# sourceURL=webpack:///./src/components/Hello.vue?./node_modules/css-loader??ref--2-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \"\\n.greeting {\\n    font-size: 30px;\\n}\\n\", \"\"]);\n\n// exports\nexports.locals = {\n\t\"greeting\": \"greeting\"\n};\n\n//# sourceURL=webpack:///./src/components/Hello.vue?./node_modules/css-loader??ref--2-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
