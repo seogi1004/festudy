@@ -19,17 +19,6 @@
       "ts",
       "js",
       "vue"
-    ],
-    "globals": {
-      "ts-jest": {
-        "enableTsDiagnostics": true
-      }
-    },
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
     ]
   },
   "author": "",
